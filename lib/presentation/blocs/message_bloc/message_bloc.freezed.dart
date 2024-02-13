@@ -19,22 +19,22 @@ mixin _$MessageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(ChatModel chatModel) sendMessage,
-    required TResult Function() newChat,
+    required TResult Function(String message) sendMessage,
+    required TResult Function(String id) newChat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(ChatModel chatModel)? sendMessage,
-    TResult? Function()? newChat,
+    TResult? Function(String message)? sendMessage,
+    TResult? Function(String id)? newChat,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ChatModel chatModel)? sendMessage,
-    TResult Function()? newChat,
+    TResult Function(String message)? sendMessage,
+    TResult Function(String id)? newChat,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -119,8 +119,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(ChatModel chatModel) sendMessage,
-    required TResult Function() newChat,
+    required TResult Function(String message) sendMessage,
+    required TResult Function(String id) newChat,
   }) {
     return started();
   }
@@ -129,8 +129,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(ChatModel chatModel)? sendMessage,
-    TResult? Function()? newChat,
+    TResult? Function(String message)? sendMessage,
+    TResult? Function(String id)? newChat,
   }) {
     return started?.call();
   }
@@ -139,8 +139,8 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ChatModel chatModel)? sendMessage,
-    TResult Function()? newChat,
+    TResult Function(String message)? sendMessage,
+    TResult Function(String id)? newChat,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -194,7 +194,7 @@ abstract class _$$SendMessageImplCopyWith<$Res> {
           _$SendMessageImpl value, $Res Function(_$SendMessageImpl) then) =
       __$$SendMessageImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({ChatModel chatModel});
+  $Res call({String message});
 }
 
 /// @nodoc
@@ -208,13 +208,13 @@ class __$$SendMessageImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? chatModel = null,
+    Object? message = null,
   }) {
     return _then(_$SendMessageImpl(
-      null == chatModel
-          ? _value.chatModel
-          : chatModel // ignore: cast_nullable_to_non_nullable
-              as ChatModel,
+      null == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -222,14 +222,14 @@ class __$$SendMessageImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$SendMessageImpl implements _SendMessage {
-  const _$SendMessageImpl(this.chatModel);
+  const _$SendMessageImpl(this.message);
 
   @override
-  final ChatModel chatModel;
+  final String message;
 
   @override
   String toString() {
-    return 'MessageEvent.sendMessage(chatModel: $chatModel)';
+    return 'MessageEvent.sendMessage(message: $message)';
   }
 
   @override
@@ -237,12 +237,11 @@ class _$SendMessageImpl implements _SendMessage {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SendMessageImpl &&
-            (identical(other.chatModel, chatModel) ||
-                other.chatModel == chatModel));
+            (identical(other.message, message) || other.message == message));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, chatModel);
+  int get hashCode => Object.hash(runtimeType, message);
 
   @JsonKey(ignore: true)
   @override
@@ -254,32 +253,32 @@ class _$SendMessageImpl implements _SendMessage {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(ChatModel chatModel) sendMessage,
-    required TResult Function() newChat,
+    required TResult Function(String message) sendMessage,
+    required TResult Function(String id) newChat,
   }) {
-    return sendMessage(chatModel);
+    return sendMessage(message);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(ChatModel chatModel)? sendMessage,
-    TResult? Function()? newChat,
+    TResult? Function(String message)? sendMessage,
+    TResult? Function(String id)? newChat,
   }) {
-    return sendMessage?.call(chatModel);
+    return sendMessage?.call(message);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ChatModel chatModel)? sendMessage,
-    TResult Function()? newChat,
+    TResult Function(String message)? sendMessage,
+    TResult Function(String id)? newChat,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
-      return sendMessage(chatModel);
+      return sendMessage(message);
     }
     return orElse();
   }
@@ -320,9 +319,9 @@ class _$SendMessageImpl implements _SendMessage {
 }
 
 abstract class _SendMessage implements MessageEvent {
-  const factory _SendMessage(final ChatModel chatModel) = _$SendMessageImpl;
+  const factory _SendMessage(final String message) = _$SendMessageImpl;
 
-  ChatModel get chatModel;
+  String get message;
   @JsonKey(ignore: true)
   _$$SendMessageImplCopyWith<_$SendMessageImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -333,6 +332,8 @@ abstract class _$$NewChatImplCopyWith<$Res> {
   factory _$$NewChatImplCopyWith(
           _$NewChatImpl value, $Res Function(_$NewChatImpl) then) =
       __$$NewChatImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
 }
 
 /// @nodoc
@@ -342,57 +343,81 @@ class __$$NewChatImplCopyWithImpl<$Res>
   __$$NewChatImplCopyWithImpl(
       _$NewChatImpl _value, $Res Function(_$NewChatImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$NewChatImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$NewChatImpl implements _NewChat {
-  const _$NewChatImpl();
+  const _$NewChatImpl(this.id);
+
+  @override
+  final String id;
 
   @override
   String toString() {
-    return 'MessageEvent.newChat()';
+    return 'MessageEvent.newChat(id: $id)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$NewChatImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$NewChatImpl &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$NewChatImplCopyWith<_$NewChatImpl> get copyWith =>
+      __$$NewChatImplCopyWithImpl<_$NewChatImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() started,
-    required TResult Function(ChatModel chatModel) sendMessage,
-    required TResult Function() newChat,
+    required TResult Function(String message) sendMessage,
+    required TResult Function(String id) newChat,
   }) {
-    return newChat();
+    return newChat(id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
-    TResult? Function(ChatModel chatModel)? sendMessage,
-    TResult? Function()? newChat,
+    TResult? Function(String message)? sendMessage,
+    TResult? Function(String id)? newChat,
   }) {
-    return newChat?.call();
+    return newChat?.call(id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
-    TResult Function(ChatModel chatModel)? sendMessage,
-    TResult Function()? newChat,
+    TResult Function(String message)? sendMessage,
+    TResult Function(String id)? newChat,
     required TResult orElse(),
   }) {
     if (newChat != null) {
-      return newChat();
+      return newChat(id);
     }
     return orElse();
   }
@@ -433,54 +458,23 @@ class _$NewChatImpl implements _NewChat {
 }
 
 abstract class _NewChat implements MessageEvent {
-  const factory _NewChat() = _$NewChatImpl;
+  const factory _NewChat(final String id) = _$NewChatImpl;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$NewChatImplCopyWith<_$NewChatImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 mixin _$MessageState {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function() error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function()? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) =>
+  bool get isLoading => throw _privateConstructorUsedError;
+  ResponseFailure? get error => throw _privateConstructorUsedError;
+  List<ChatModel> get item => throw _privateConstructorUsedError;
+  ChatsViewModel? get chatsViewModel => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $MessageStateCopyWith<MessageState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -489,6 +483,14 @@ abstract class $MessageStateCopyWith<$Res> {
   factory $MessageStateCopyWith(
           MessageState value, $Res Function(MessageState) then) =
       _$MessageStateCopyWithImpl<$Res, MessageState>;
+  @useResult
+  $Res call(
+      {bool isLoading,
+      ResponseFailure? error,
+      List<ChatModel> item,
+      ChatsViewModel? chatsViewModel});
+
+  $ResponseFailureCopyWith<$Res>? get error;
 }
 
 /// @nodoc
@@ -500,328 +502,178 @@ class _$MessageStateCopyWithImpl<$Res, $Val extends MessageState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? error = freezed,
+    Object? item = null,
+    Object? chatsViewModel = freezed,
+  }) {
+    return _then(_value.copyWith(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ResponseFailure?,
+      item: null == item
+          ? _value.item
+          : item // ignore: cast_nullable_to_non_nullable
+              as List<ChatModel>,
+      chatsViewModel: freezed == chatsViewModel
+          ? _value.chatsViewModel
+          : chatsViewModel // ignore: cast_nullable_to_non_nullable
+              as ChatsViewModel?,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ResponseFailureCopyWith<$Res>? get error {
+    if (_value.error == null) {
+      return null;
+    }
+
+    return $ResponseFailureCopyWith<$Res>(_value.error!, (value) {
+      return _then(_value.copyWith(error: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$LoadingImplCopyWith<$Res> {
-  factory _$$LoadingImplCopyWith(
-          _$LoadingImpl value, $Res Function(_$LoadingImpl) then) =
-      __$$LoadingImplCopyWithImpl<$Res>;
+abstract class _$$MessageStateImplCopyWith<$Res>
+    implements $MessageStateCopyWith<$Res> {
+  factory _$$MessageStateImplCopyWith(
+          _$MessageStateImpl value, $Res Function(_$MessageStateImpl) then) =
+      __$$MessageStateImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {bool isLoading,
+      ResponseFailure? error,
+      List<ChatModel> item,
+      ChatsViewModel? chatsViewModel});
+
+  @override
+  $ResponseFailureCopyWith<$Res>? get error;
 }
 
 /// @nodoc
-class __$$LoadingImplCopyWithImpl<$Res>
-    extends _$MessageStateCopyWithImpl<$Res, _$LoadingImpl>
-    implements _$$LoadingImplCopyWith<$Res> {
-  __$$LoadingImplCopyWithImpl(
-      _$LoadingImpl _value, $Res Function(_$LoadingImpl) _then)
+class __$$MessageStateImplCopyWithImpl<$Res>
+    extends _$MessageStateCopyWithImpl<$Res, _$MessageStateImpl>
+    implements _$$MessageStateImplCopyWith<$Res> {
+  __$$MessageStateImplCopyWithImpl(
+      _$MessageStateImpl _value, $Res Function(_$MessageStateImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isLoading = null,
+    Object? error = freezed,
+    Object? item = null,
+    Object? chatsViewModel = freezed,
+  }) {
+    return _then(_$MessageStateImpl(
+      isLoading: null == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
+      error: freezed == error
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as ResponseFailure?,
+      item: null == item
+          ? _value._item
+          : item // ignore: cast_nullable_to_non_nullable
+              as List<ChatModel>,
+      chatsViewModel: freezed == chatsViewModel
+          ? _value.chatsViewModel
+          : chatsViewModel // ignore: cast_nullable_to_non_nullable
+              as ChatsViewModel?,
+    ));
+  }
 }
 
 /// @nodoc
 
-class _$LoadingImpl implements _Loading {
-  const _$LoadingImpl();
+class _$MessageStateImpl implements _MessageState {
+  const _$MessageStateImpl(
+      {this.isLoading = false,
+      this.error = null,
+      final List<ChatModel> item = const [],
+      this.chatsViewModel = null})
+      : _item = item;
+
+  @override
+  @JsonKey()
+  final bool isLoading;
+  @override
+  @JsonKey()
+  final ResponseFailure? error;
+  final List<ChatModel> _item;
+  @override
+  @JsonKey()
+  List<ChatModel> get item {
+    if (_item is EqualUnmodifiableListView) return _item;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_item);
+  }
+
+  @override
+  @JsonKey()
+  final ChatsViewModel? chatsViewModel;
 
   @override
   String toString() {
-    return 'MessageState.loading()';
+    return 'MessageState(isLoading: $isLoading, error: $error, item: $item, chatsViewModel: $chatsViewModel)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadingImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$MessageStateImpl &&
+            (identical(other.isLoading, isLoading) ||
+                other.isLoading == isLoading) &&
+            (identical(other.error, error) || other.error == error) &&
+            const DeepCollectionEquality().equals(other._item, _item) &&
+            (identical(other.chatsViewModel, chatsViewModel) ||
+                other.chatsViewModel == chatsViewModel));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isLoading, error,
+      const DeepCollectionEquality().hash(_item), chatsViewModel);
 
+  @JsonKey(ignore: true)
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function() error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function()? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
+  @pragma('vm:prefer-inline')
+  _$$MessageStateImplCopyWith<_$MessageStateImpl> get copyWith =>
+      __$$MessageStateImplCopyWithImpl<_$MessageStateImpl>(this, _$identity);
 }
 
-abstract class _Loading implements MessageState {
-  const factory _Loading() = _$LoadingImpl;
-}
-
-/// @nodoc
-abstract class _$$SuccessImplCopyWith<$Res> {
-  factory _$$SuccessImplCopyWith(
-          _$SuccessImpl value, $Res Function(_$SuccessImpl) then) =
-      __$$SuccessImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SuccessImplCopyWithImpl<$Res>
-    extends _$MessageStateCopyWithImpl<$Res, _$SuccessImpl>
-    implements _$$SuccessImplCopyWith<$Res> {
-  __$$SuccessImplCopyWithImpl(
-      _$SuccessImpl _value, $Res Function(_$SuccessImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$SuccessImpl implements _Success {
-  const _$SuccessImpl();
+abstract class _MessageState implements MessageState {
+  const factory _MessageState(
+      {final bool isLoading,
+      final ResponseFailure? error,
+      final List<ChatModel> item,
+      final ChatsViewModel? chatsViewModel}) = _$MessageStateImpl;
 
   @override
-  String toString() {
-    return 'MessageState.success()';
-  }
-
+  bool get isLoading;
   @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SuccessImpl);
-  }
-
+  ResponseFailure? get error;
   @override
-  int get hashCode => runtimeType.hashCode;
-
+  List<ChatModel> get item;
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function() error,
-  }) {
-    return success();
-  }
-
+  ChatsViewModel? get chatsViewModel;
   @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function()? error,
-  }) {
-    return success?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Success implements MessageState {
-  const factory _Success() = _$SuccessImpl;
-}
-
-/// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$MessageStateCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl();
-
-  @override
-  String toString() {
-    return 'MessageState.error()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ErrorImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loading,
-    required TResult Function() success,
-    required TResult Function() error,
-  }) {
-    return error();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loading,
-    TResult? Function()? success,
-    TResult? Function()? error,
-  }) {
-    return error?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loading,
-    TResult Function()? success,
-    TResult Function()? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loading value) loading,
-    required TResult Function(_Success value) success,
-    required TResult Function(_Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loading value)? loading,
-    TResult? Function(_Success value)? success,
-    TResult? Function(_Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loading value)? loading,
-    TResult Function(_Success value)? success,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Error implements MessageState {
-  const factory _Error() = _$ErrorImpl;
+  @JsonKey(ignore: true)
+  _$$MessageStateImplCopyWith<_$MessageStateImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

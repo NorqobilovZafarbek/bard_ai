@@ -31,15 +31,42 @@ class DB implements DBFace {
         await db.execute(
           'CREATE TABLE $table ('
           '"id"	TEXT NOT NULL UNIQUE,'
-          '"topic"	TEXT NOT NULL DEFAULT \'New Chat\','
+          '"topic" TEXT NULL,'
           '"created_at"	TEXT NOT NULL,'
           'PRIMARY KEY("id")'
           ')',
         );
       },
-      version: 1,
+      version: 4,
     );
     return DB._(database, table);
+  }
+
+  Future<void> delete(String id) async {
+    await _database.delete(
+      table,
+      where: "id = ?",
+      whereArgs: [id],
+    );
+  }
+
+  Future<bool> isCheck(String id) async {
+    final data = await _database.query(
+      table,
+      where: "id = ?",
+      whereArgs: [id],
+    );
+    return data.isNotEmpty;
+  }
+
+  Future<ChatsViewModel> getChat(String id) async {
+    final data = await _database.query(
+      table,
+      where: "id = ?",
+      whereArgs: [id],
+      limit: 1,
+    );
+    return ChatsViewModel.fromJson(data.first);
   }
 
   @override
@@ -86,7 +113,7 @@ class MessageDB implements IMessageDBFace {
               	PRIMARY KEY("id")
           )""");
       },
-      version: 1,
+      version: 4,
     );
     return MessageDB._(database, table);
   }
@@ -105,5 +132,15 @@ class MessageDB implements IMessageDBFace {
       orderBy: "send_time ASC",
     );
     return data.map(ChatModel.fromJson).toList();
+  }
+
+  Future<bool> isChecking(String id) async {
+    final data = await _database.query(
+      table,
+      where: "id = ?",
+      whereArgs: [id],
+    );
+
+    return data.isNotEmpty;
   }
 }

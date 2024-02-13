@@ -1,4 +1,8 @@
+import 'package:bard_ai/data/models/chat_view/chat_view_model.dart';
+import 'package:bard_ai/presentation/blocs/message_bloc/message_bloc.dart';
+import 'package:bard_ai/presentation/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/constants/colors/app_colors.dart';
@@ -6,6 +10,7 @@ import '../../core/routes/app_route_constants.dart';
 import '../../core/constants/icons/icons.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../domain/services/local_db/chat_services_sqflt.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({
@@ -105,7 +110,25 @@ class _CustomDrawerState extends State<CustomDrawer> {
               children: [
                 ListTile(
                   title: const Text("New Chat"),
-                  onTap: () {},
+                  onTap: () {
+                    ChatsViewModel chatsViewModel = ChatsViewModel(
+                      createdAt: DateTime.now(),
+                    );
+                    context.read<DB>().addToChats(chatsViewModel);
+                    context.read<MessageBloc>().add(
+                          MessageEvent.newChat(
+                            chatsViewModel.id,
+                          ),
+                        );
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HomePage(
+                          id: chatsViewModel.id,
+                        ),
+                      ),
+                    );
+                  },
                   leading: Icon(
                     Icons.add,
                     size: 20.r,

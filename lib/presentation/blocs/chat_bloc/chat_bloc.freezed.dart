@@ -16,42 +16,55 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$ChatEvent {
-  String get topic => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String topic) addTopic,
+    required TResult Function() started,
+    required TResult Function() getChats,
+    required TResult Function(ChatsViewModel model) addToChat,
+    required TResult Function(String id) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String topic)? addTopic,
+    TResult? Function()? started,
+    TResult? Function()? getChats,
+    TResult? Function(ChatsViewModel model)? addToChat,
+    TResult? Function(String id)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String topic)? addTopic,
+    TResult Function()? started,
+    TResult Function()? getChats,
+    TResult Function(ChatsViewModel model)? addToChat,
+    TResult Function(String id)? delete,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AddTopic value) addTopic,
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetChats value) getChats,
+    required TResult Function(_AddToChat value) addToChat,
+    required TResult Function(_Delete value) delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddTopic value)? addTopic,
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetChats value)? getChats,
+    TResult? Function(_AddToChat value)? addToChat,
+    TResult? Function(_Delete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddTopic value)? addTopic,
+    TResult Function(_Started value)? started,
+    TResult Function(_GetChats value)? getChats,
+    TResult Function(_AddToChat value)? addToChat,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) =>
-      throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $ChatEventCopyWith<ChatEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -59,8 +72,6 @@ mixin _$ChatEvent {
 abstract class $ChatEventCopyWith<$Res> {
   factory $ChatEventCopyWith(ChatEvent value, $Res Function(ChatEvent) then) =
       _$ChatEventCopyWithImpl<$Res, ChatEvent>;
-  @useResult
-  $Res call({String topic});
 }
 
 /// @nodoc
@@ -72,108 +83,76 @@ class _$ChatEventCopyWithImpl<$Res, $Val extends ChatEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? topic = null,
-  }) {
-    return _then(_value.copyWith(
-      topic: null == topic
-          ? _value.topic
-          : topic // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
 }
 
 /// @nodoc
-abstract class _$$AddTopicImplCopyWith<$Res>
-    implements $ChatEventCopyWith<$Res> {
-  factory _$$AddTopicImplCopyWith(
-          _$AddTopicImpl value, $Res Function(_$AddTopicImpl) then) =
-      __$$AddTopicImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String topic});
+abstract class _$$StartedImplCopyWith<$Res> {
+  factory _$$StartedImplCopyWith(
+          _$StartedImpl value, $Res Function(_$StartedImpl) then) =
+      __$$StartedImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AddTopicImplCopyWithImpl<$Res>
-    extends _$ChatEventCopyWithImpl<$Res, _$AddTopicImpl>
-    implements _$$AddTopicImplCopyWith<$Res> {
-  __$$AddTopicImplCopyWithImpl(
-      _$AddTopicImpl _value, $Res Function(_$AddTopicImpl) _then)
+class __$$StartedImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$StartedImpl>
+    implements _$$StartedImplCopyWith<$Res> {
+  __$$StartedImplCopyWithImpl(
+      _$StartedImpl _value, $Res Function(_$StartedImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? topic = null,
-  }) {
-    return _then(_$AddTopicImpl(
-      null == topic
-          ? _value.topic
-          : topic // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$AddTopicImpl implements _AddTopic {
-  const _$AddTopicImpl(this.topic);
-
-  @override
-  final String topic;
+class _$StartedImpl implements _Started {
+  const _$StartedImpl();
 
   @override
   String toString() {
-    return 'ChatEvent.addTopic(topic: $topic)';
+    return 'ChatEvent.started()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddTopicImpl &&
-            (identical(other.topic, topic) || other.topic == topic));
+        (other.runtimeType == runtimeType && other is _$StartedImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, topic);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AddTopicImplCopyWith<_$AddTopicImpl> get copyWith =>
-      __$$AddTopicImplCopyWithImpl<_$AddTopicImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(String topic) addTopic,
+    required TResult Function() started,
+    required TResult Function() getChats,
+    required TResult Function(ChatsViewModel model) addToChat,
+    required TResult Function(String id) delete,
   }) {
-    return addTopic(topic);
+    return started();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String topic)? addTopic,
+    TResult? Function()? started,
+    TResult? Function()? getChats,
+    TResult? Function(ChatsViewModel model)? addToChat,
+    TResult? Function(String id)? delete,
   }) {
-    return addTopic?.call(topic);
+    return started?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String topic)? addTopic,
+    TResult Function()? started,
+    TResult Function()? getChats,
+    TResult Function(ChatsViewModel model)? addToChat,
+    TResult Function(String id)? delete,
     required TResult orElse(),
   }) {
-    if (addTopic != null) {
-      return addTopic(topic);
+    if (started != null) {
+      return started();
     }
     return orElse();
   }
@@ -181,40 +160,446 @@ class _$AddTopicImpl implements _AddTopic {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(_AddTopic value) addTopic,
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetChats value) getChats,
+    required TResult Function(_AddToChat value) addToChat,
+    required TResult Function(_Delete value) delete,
   }) {
-    return addTopic(this);
+    return started(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddTopic value)? addTopic,
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetChats value)? getChats,
+    TResult? Function(_AddToChat value)? addToChat,
+    TResult? Function(_Delete value)? delete,
   }) {
-    return addTopic?.call(this);
+    return started?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddTopic value)? addTopic,
+    TResult Function(_Started value)? started,
+    TResult Function(_GetChats value)? getChats,
+    TResult Function(_AddToChat value)? addToChat,
+    TResult Function(_Delete value)? delete,
     required TResult orElse(),
   }) {
-    if (addTopic != null) {
-      return addTopic(this);
+    if (started != null) {
+      return started(this);
     }
     return orElse();
   }
 }
 
-abstract class _AddTopic implements ChatEvent {
-  const factory _AddTopic(final String topic) = _$AddTopicImpl;
+abstract class _Started implements ChatEvent {
+  const factory _Started() = _$StartedImpl;
+}
+
+/// @nodoc
+abstract class _$$GetChatsImplCopyWith<$Res> {
+  factory _$$GetChatsImplCopyWith(
+          _$GetChatsImpl value, $Res Function(_$GetChatsImpl) then) =
+      __$$GetChatsImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GetChatsImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$GetChatsImpl>
+    implements _$$GetChatsImplCopyWith<$Res> {
+  __$$GetChatsImplCopyWithImpl(
+      _$GetChatsImpl _value, $Res Function(_$GetChatsImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GetChatsImpl implements _GetChats {
+  const _$GetChatsImpl();
 
   @override
-  String get topic;
+  String toString() {
+    return 'ChatEvent.getChats()';
+  }
+
   @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GetChatsImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getChats,
+    required TResult Function(ChatsViewModel model) addToChat,
+    required TResult Function(String id) delete,
+  }) {
+    return getChats();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getChats,
+    TResult? Function(ChatsViewModel model)? addToChat,
+    TResult? Function(String id)? delete,
+  }) {
+    return getChats?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getChats,
+    TResult Function(ChatsViewModel model)? addToChat,
+    TResult Function(String id)? delete,
+    required TResult orElse(),
+  }) {
+    if (getChats != null) {
+      return getChats();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetChats value) getChats,
+    required TResult Function(_AddToChat value) addToChat,
+    required TResult Function(_Delete value) delete,
+  }) {
+    return getChats(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetChats value)? getChats,
+    TResult? Function(_AddToChat value)? addToChat,
+    TResult? Function(_Delete value)? delete,
+  }) {
+    return getChats?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetChats value)? getChats,
+    TResult Function(_AddToChat value)? addToChat,
+    TResult Function(_Delete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (getChats != null) {
+      return getChats(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GetChats implements ChatEvent {
+  const factory _GetChats() = _$GetChatsImpl;
+}
+
+/// @nodoc
+abstract class _$$AddToChatImplCopyWith<$Res> {
+  factory _$$AddToChatImplCopyWith(
+          _$AddToChatImpl value, $Res Function(_$AddToChatImpl) then) =
+      __$$AddToChatImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ChatsViewModel model});
+}
+
+/// @nodoc
+class __$$AddToChatImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$AddToChatImpl>
+    implements _$$AddToChatImplCopyWith<$Res> {
+  __$$AddToChatImplCopyWithImpl(
+      _$AddToChatImpl _value, $Res Function(_$AddToChatImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? model = null,
+  }) {
+    return _then(_$AddToChatImpl(
+      null == model
+          ? _value.model
+          : model // ignore: cast_nullable_to_non_nullable
+              as ChatsViewModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$AddToChatImpl implements _AddToChat {
+  const _$AddToChatImpl(this.model);
+
+  @override
+  final ChatsViewModel model;
+
+  @override
+  String toString() {
+    return 'ChatEvent.addToChat(model: $model)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AddToChatImpl &&
+            (identical(other.model, model) || other.model == model));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, model);
+
   @JsonKey(ignore: true)
-  _$$AddTopicImplCopyWith<_$AddTopicImpl> get copyWith =>
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AddToChatImplCopyWith<_$AddToChatImpl> get copyWith =>
+      __$$AddToChatImplCopyWithImpl<_$AddToChatImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getChats,
+    required TResult Function(ChatsViewModel model) addToChat,
+    required TResult Function(String id) delete,
+  }) {
+    return addToChat(model);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getChats,
+    TResult? Function(ChatsViewModel model)? addToChat,
+    TResult? Function(String id)? delete,
+  }) {
+    return addToChat?.call(model);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getChats,
+    TResult Function(ChatsViewModel model)? addToChat,
+    TResult Function(String id)? delete,
+    required TResult orElse(),
+  }) {
+    if (addToChat != null) {
+      return addToChat(model);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetChats value) getChats,
+    required TResult Function(_AddToChat value) addToChat,
+    required TResult Function(_Delete value) delete,
+  }) {
+    return addToChat(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetChats value)? getChats,
+    TResult? Function(_AddToChat value)? addToChat,
+    TResult? Function(_Delete value)? delete,
+  }) {
+    return addToChat?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetChats value)? getChats,
+    TResult Function(_AddToChat value)? addToChat,
+    TResult Function(_Delete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (addToChat != null) {
+      return addToChat(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _AddToChat implements ChatEvent {
+  const factory _AddToChat(final ChatsViewModel model) = _$AddToChatImpl;
+
+  ChatsViewModel get model;
+  @JsonKey(ignore: true)
+  _$$AddToChatImplCopyWith<_$AddToChatImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$DeleteImplCopyWith<$Res> {
+  factory _$$DeleteImplCopyWith(
+          _$DeleteImpl value, $Res Function(_$DeleteImpl) then) =
+      __$$DeleteImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String id});
+}
+
+/// @nodoc
+class __$$DeleteImplCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res, _$DeleteImpl>
+    implements _$$DeleteImplCopyWith<$Res> {
+  __$$DeleteImplCopyWithImpl(
+      _$DeleteImpl _value, $Res Function(_$DeleteImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+  }) {
+    return _then(_$DeleteImpl(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$DeleteImpl implements _Delete {
+  const _$DeleteImpl(this.id);
+
+  @override
+  final String id;
+
+  @override
+  String toString() {
+    return 'ChatEvent.delete(id: $id)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$DeleteImpl &&
+            (identical(other.id, id) || other.id == id));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, id);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
+      __$$DeleteImplCopyWithImpl<_$DeleteImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() getChats,
+    required TResult Function(ChatsViewModel model) addToChat,
+    required TResult Function(String id) delete,
+  }) {
+    return delete(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? getChats,
+    TResult? Function(ChatsViewModel model)? addToChat,
+    TResult? Function(String id)? delete,
+  }) {
+    return delete?.call(id);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? getChats,
+    TResult Function(ChatsViewModel model)? addToChat,
+    TResult Function(String id)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(id);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_GetChats value) getChats,
+    required TResult Function(_AddToChat value) addToChat,
+    required TResult Function(_Delete value) delete,
+  }) {
+    return delete(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_GetChats value)? getChats,
+    TResult? Function(_AddToChat value)? addToChat,
+    TResult? Function(_Delete value)? delete,
+  }) {
+    return delete?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_GetChats value)? getChats,
+    TResult Function(_AddToChat value)? addToChat,
+    TResult Function(_Delete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (delete != null) {
+      return delete(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Delete implements ChatEvent {
+  const factory _Delete(final String id) = _$DeleteImpl;
+
+  String get id;
+  @JsonKey(ignore: true)
+  _$$DeleteImplCopyWith<_$DeleteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

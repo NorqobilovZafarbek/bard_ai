@@ -1,6 +1,6 @@
 import 'dart:async';
 
-
+import 'package:bard_ai/data/models/chat/chat_model.dart';
 import 'package:flutter_gemini/flutter_gemini.dart';
 
 class GeminiInit {
@@ -8,24 +8,23 @@ class GeminiInit {
 
   static void initialization() {
     Gemini.init(
-      // apiKey: "AIzaSyCZZf48oPw4MXysXt202us8uDGM-qQgAiI",
       apiKey: "AIzaSyB5C7e9HutGgyAMEpEsBV8ccfHGL-bavhg",
       enableDebugging: false,
     );
   }
 
-  static Future<List<Content>> write(
-    List<Content> item,
+  static Future<ChatModel> write(
     String text,
+    String id,
   ) async {
-    final a = await gemini.chat(item);
+    final a = await gemini.text(text);
 
-    item.add(
-      Content(parts: [Parts(text: a?.output)], role: 'model'),
+    ChatModel chatModel = ChatModel(
+      chatId: id,
+      text: a?.output ?? 'null',
+      role: Role.model,
     );
 
-    print('-------------------2');
-
-    return item;
+    return chatModel;
   }
 }

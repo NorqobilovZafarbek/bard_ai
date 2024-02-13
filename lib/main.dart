@@ -9,10 +9,15 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AppServices.initialize();
   GeminiInit.initialization();
+
   final db = await DB.create("chats");
   final messagesDB = await MessageDB.create("messages");
-  runApp(AppScope(
-    db: db,
-    messagesDB: messagesDB,
-  ));
+
+  print('-------------------------Main');
+  runApp(
+    AppScope(
+      db: db,
+      messagesDB: messagesDB,
+    ),
+  );
 }

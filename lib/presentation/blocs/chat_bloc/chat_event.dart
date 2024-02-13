@@ -9,4 +9,5 @@ class ChatEvent with _$ChatEvent {
   const factory ChatEvent.addToChat(ChatsViewModel model) = _AddToChat;
 
   const factory ChatEvent.delete(String id) = _Delete;
+
 }

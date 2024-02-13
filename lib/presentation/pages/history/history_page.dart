@@ -39,7 +39,6 @@ class _HistoryPageState extends State<HistoryPage> {
 
   @override
   Widget build(BuildContext context) {
-    print('---------------------------------------');
     List<List<Content>> chats = AppServices.readChats();
     print('--------------------history');
     print(chats.first.isEmpty);
