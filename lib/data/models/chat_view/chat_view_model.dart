@@ -17,6 +17,18 @@ class ChatsViewModel {
     required this.createdAt,
   }) : id = id ?? _uuid.v4();
 
+  ChatsViewModel? copyWith({
+    String? id,
+    String? topic,
+    DateTime? dateTime,
+  }) {
+    return ChatsViewModel(
+      id: id ?? this.id,
+      topic: topic ?? this.topic,
+      createdAt: createdAt,
+    );
+  }
+
   factory ChatsViewModel.fromJson(Map<String, dynamic> json) =>
       _$ChatsViewModelFromJson(json);
 

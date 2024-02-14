@@ -66,12 +66,14 @@ class MessageBloc extends Bloc<MessageEvent, MessageState> {
         ),
       ),
     );
-    await _messageDB.addToMessage(
-      await GeminiInit.write(
-        value.message,
-        state.chatsViewModel!.id,
-      ),
+    final model = await GeminiInit.write(
+      value.message,
+      state.chatsViewModel!.id,
     );
+    await _messageDB.addToMessage(model);
+    if (state.chatsViewModel?.topic == null) {
+      state.chatsViewModel!.copyWith(topic: model.text);
+    }
     emit(state.copyWith(
       item: await _messageDB.getMessage(
         state.chatsViewModel!.id,

@@ -42,6 +42,10 @@ class DB implements DBFace {
     return DB._(database, table);
   }
 
+  Future<void> clear() async {
+    await _database.delete(table);
+  }
+
   Future<void> delete(String id) async {
     await _database.delete(
       table,
@@ -116,6 +120,10 @@ class MessageDB implements IMessageDBFace {
       version: 4,
     );
     return MessageDB._(database, table);
+  }
+
+  Future<void> clear() async {
+    await _database.delete(table);
   }
 
   @override
